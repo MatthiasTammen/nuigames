@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playercar : MonoBehaviour {
+public class Player1 : MonoBehaviour {
 
-        public float speed = 90f;
+    public float speed = 90f;
     public float turnSpeed = 5f;
     public float hoverForce = 65f;
     public float hoverHeight = 3.5f;
