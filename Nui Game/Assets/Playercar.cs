@@ -4,40 +4,39 @@ using UnityEngine;
 
 public class Playercar : MonoBehaviour {
 
-        public float speed = 90f;
-    public float turnSpeed = 5f;
-    public float hoverForce = 65f;
-    public float hoverHeight = 3.5f;
-    private float powerInput;
-    private float turnInput;
-    private Rigidbody carRigidbody;
+    public bool AddForce;
+    private Rigidbody rb;
+    private int score;
+    public float movementSpeed = 1.0f;
 
-
-    void Awake () 
-    {
-        carRigidbody = GetComponent <Rigidbody>();
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody>();
+        score = 0;
     }
 
-    void Update () 
+    // Update is called once per frame
+    void Update () {
+		
+	}
+    private void FixedUpdate()
     {
-        powerInput = Input.GetAxis ("Vertical");
-        turnInput = Input.GetAxis ("Horizontal");
-    }
-
-    void FixedUpdate()
-    {
-        Ray ray = new Ray (transform.position, -transform.up);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, hoverHeight))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
-            Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
-            carRigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
+            transform.position += Vector3.forward * Time.deltaTime * movementSpeed;
         }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.position += Vector3.back * Time.deltaTime * movementSpeed;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            rb.transform.Rotate(0, 0, 1);
 
-        carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
-        carRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
-
+         }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.transform.Rotate(0, 0, -1);
+        }
     }
 }
