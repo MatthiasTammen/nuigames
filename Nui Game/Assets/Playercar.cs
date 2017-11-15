@@ -39,4 +39,13 @@ public class Playercar : MonoBehaviour {
             rb.transform.Rotate(0, 0, -1);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            other.gameObject.SetActive(false);
+            // Destroy(other.gameObject);
+        }
+    }
 }

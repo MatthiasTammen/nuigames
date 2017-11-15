@@ -6,7 +6,7 @@ public class Player1 : MonoBehaviour {
 
     public float speed = 90f;
     public float turnSpeed = 5f;
-    public float hoverForce = 65f;
+    public float hoverForce = 5f;
     public float hoverHeight = 3.5f;
     private float powerInput;
     private float turnInput;
